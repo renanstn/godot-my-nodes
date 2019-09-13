@@ -55,19 +55,21 @@ func _physics_process(delta):
 	motion.y += GRAVITY
 	motion = transform_inputs_in_motion()
 	motion = move_and_slide(motion, UP)
+	print(motion.x)
 	emit_signals(motion)
 	
 func transform_inputs_in_motion() -> Vector2:
 
 	var friction : bool = false
 
-	# Sprint (aumentar a velocidade maxima)
-	if CAN_SPRINT and is_on_floor() and Input.is_action_pressed("sprint"):
+	# Sprint (increase max speed)
+	if CAN_SPRINT and Input.is_action_pressed("sprint"):
 		max_speed = WALK_SPEED + SPRINT_SPEED
 	elif max_speed > WALK_SPEED:
-		# Reduzir a max_speed até voltar a ser igual a walk_speed
+		# Gradually reduce max_speed to walk_speed
 		max_speed = lerp(max_speed, 0, DEACELERATION)
 		max_speed = max(max_speed, WALK_SPEED)
+		pass
 
 	# Accelerate / Deacelerate
 	if CAN_WALK:
@@ -77,7 +79,6 @@ func transform_inputs_in_motion() -> Vector2:
 			motion.x = max(motion.x - ACCELERATION, -max_speed)
 		else:
 			friction = true
-			# motion.x += -DEACELERATION * sign(motion.x)
 
 	if is_on_floor():
 		# Jump
@@ -88,11 +89,11 @@ func transform_inputs_in_motion() -> Vector2:
 			motion.x = lerp(motion.x, 0, DEACELERATION)
 	else:
 		# In air deaceleration
-		motion.x = lerp(motion.x, 0, AIR_DEACELERATION) # 5%
-		
+		motion.x = lerp(motion.x, 0, AIR_DEACELERATION)
+
 	if CAN_FLY and Input.is_action_pressed("jump"):
-			motion.y -= THRUST_POWER
-			motion.y = clamp(motion.y, -MAX_THRUST, 1000)
+		motion.y -= THRUST_POWER
+		motion.y = clamp(motion.y, -MAX_THRUST, 1000)
 
 	return motion
 
