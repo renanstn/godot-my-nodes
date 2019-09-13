@@ -11,9 +11,15 @@ Copy this script to your project, and a new node
 'BasicMovement2D' will appear in godot's list, as a
 KinematicBody2D's child.
 
+Requirements:
+	The following inputs need to be created:
+	- 'left'
+	- 'right'
+	- 'sprint'
+	- 'jump'
+
 Credits: Renan Santana Desiderio
 https://github.com/Doc-McCoy
-renan_ota@hotmail.com
 """
 
 const UP : Vector2 = Vector2(0, -1)
