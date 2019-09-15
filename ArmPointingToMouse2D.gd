@@ -1,4 +1,3 @@
-tool
 extends Node2D
 
 class_name ArmPointingToMouse2D
