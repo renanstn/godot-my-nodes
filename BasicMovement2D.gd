@@ -1,4 +1,3 @@
-tool
 extends KinematicBody2D
 
 class_name BasicMovement2D
