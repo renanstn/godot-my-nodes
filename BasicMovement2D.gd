@@ -98,7 +98,7 @@ func transform_inputs_in_motion() -> Vector2:
 	return motion
 
 
-func emit_signals(motion : Vector2):
+func emit_signals(motion : Vector2) -> void:
 
 	if is_on_floor() and motion.x != 0:
 		emit_signal("is_on_ground")
