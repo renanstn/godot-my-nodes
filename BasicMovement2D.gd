@@ -41,6 +41,7 @@ export (bool) var CAN_FLY = false
 
 var motion : Vector2 = Vector2()
 var max_speed : float = WALK_SPEED
+var looking_to_right : bool
 
 signal is_walking
 signal is_jumping
@@ -48,6 +49,7 @@ signal is_falling
 signal is_sprinting
 signal is_on_ground
 signal is_thrusting
+signal player_flipped
 
 # ========================================================================
 func _physics_process(delta):
@@ -55,7 +57,6 @@ func _physics_process(delta):
 	motion.y += GRAVITY
 	motion = transform_inputs_in_motion()
 	motion = move_and_slide(motion, UP)
-	print(motion.x)
 	emit_signals(motion)
 	
 func transform_inputs_in_motion() -> Vector2:
@@ -98,7 +99,7 @@ func transform_inputs_in_motion() -> Vector2:
 	return motion
 
 
-func emit_signals(motion : Vector2) -> void:
+func emit_signals(motion : Vector2):
 
 	if is_on_floor() and motion.x != 0:
 		emit_signal("is_on_ground")
@@ -106,6 +107,14 @@ func emit_signals(motion : Vector2) -> void:
 			emit_signal("is_walking")
 		else:
 			emit_signal("is_sprinting")
+
+	if motion.x < 0 and looking_to_right:
+		emit_signal("player_flipped")
+		looking_to_right = false
+	if motion.x > 0 and not looking_to_right:
+		looking_to_right = true
+		emit_signal("player_flipped")
+
 	if motion.y < 0:
 		if CAN_FLY:
 			emit_signal("is_thrusting")

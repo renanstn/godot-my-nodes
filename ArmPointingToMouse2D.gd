@@ -2,7 +2,7 @@ extends Node2D
 
 class_name ArmPointingToMouse2D
 
-export var FIX_ROTATION : bool
+export var FIX_ROTATION : bool = true
 
 func _process(delta):
 	look_to_mouse()
