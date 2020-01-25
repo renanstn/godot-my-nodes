@@ -66,7 +66,7 @@ func transform_inputs_in_motion() -> Vector2:
 	# Sprint (increase max speed)
 	if CAN_SPRINT and Input.is_action_pressed("sprint"):
 		max_speed = WALK_SPEED + SPRINT_SPEED
-	elif max_speed > WALK_SPEED:
+	elif max_speed > WALK_SPEED and is_on_floor():
 		# Gradually reduce max_speed to walk_speed
 		max_speed = lerp(max_speed, 0, DEACELERATION)
 		max_speed = max(max_speed, WALK_SPEED)
