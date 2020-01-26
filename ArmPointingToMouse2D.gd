@@ -2,6 +2,18 @@ extends Node2D
 
 class_name ArmPointingToMouse2D
 
+"""
+This script provides a node that is always
+looking at the mouse pointer.
+
+Copy this script to your project, and a new node
+'ArmPointingToMouse2D' will appear in godot's list,
+ as a Node2D's child.
+
+Credits: Renan Santana Desiderio
+https://github.com/Doc-McCoy
+"""
+
 export var FIX_ROTATION : bool = true
 
 func _process(delta):
