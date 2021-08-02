@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name WeaponRaycast
+class_name RaycastWeapon2D
 
 """
 This script provides a basic raycast weapon, with

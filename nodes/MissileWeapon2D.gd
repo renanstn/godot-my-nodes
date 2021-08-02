@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name WeaponMissile
+class_name MissileWeapon2D
 
 """
 This script provides a basic missile weapon, with
