@@ -19,7 +19,7 @@ Requirements:
 	- 'jump'
 
 Credits: Renan Santana Desiderio
-https://github.com/Doc-McCoy
+https://github.com/renanstd
 """
 
 const UP : Vector2 = Vector2(0, -1)
@@ -51,16 +51,15 @@ signal is_on_ground
 signal is_thrusting
 signal player_flipped
 
-# ========================================================================
-func _physics_process(delta):
-
+# ==============================================================================
+func _physics_process(_delta):
 	motion.y += GRAVITY
 	motion = transform_inputs_in_motion()
 	motion = move_and_slide(motion, UP)
 	emit_signals(motion)
-	
-func transform_inputs_in_motion() -> Vector2:
 
+
+func transform_inputs_in_motion() -> Vector2:
 	var friction : bool = false
 
 	# Sprint (increase max speed)
@@ -100,7 +99,6 @@ func transform_inputs_in_motion() -> Vector2:
 
 
 func emit_signals(motion : Vector2):
-
 	if is_on_floor() and motion.x != 0:
 		emit_signal("is_on_ground")
 		if abs(motion.x) <= WALK_SPEED:

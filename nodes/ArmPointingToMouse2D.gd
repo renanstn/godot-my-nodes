@@ -11,12 +11,13 @@ Copy this script to your project, and a new node
  as a Node2D's child.
 
 Credits: Renan Santana Desiderio
-https://github.com/Doc-McCoy
+https://github.com/renanstd
 """
 
-export var FIX_ROTATION : bool = true
+export var FIX_ROTATION: bool = true
 
-func _process(delta):
+
+func _process(_delta):
 	look_to_mouse()
 	if FIX_ROTATION:
 		fix_rotation()
