@@ -1,4 +1,4 @@
-# godot-CustomNodes
+# godot-my-nodes
 My custom nodes, writed to help people save time developing games in Godot.
 
 ## BasicMovement2D
